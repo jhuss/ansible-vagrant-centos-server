@@ -1,0 +1,15 @@
+rpmforge_url: http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
+rpmforge_key1: /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
+rpmforge_key2: /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-fabian
+
+epel_url: http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+epel_key: /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+
+remi_url: http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+remi_key: /etc/pki/rpm-gpg/RPM-GPG-KEY-remi
+
+mysql_url: http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+mysql_key: /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+postgresql_url: http://yum.postgresql.org/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-1.noarch.rpm
+postgresql_key: /etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-94

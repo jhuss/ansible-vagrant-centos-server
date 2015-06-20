@@ -1,0 +1,92 @@
+- name: repos for centos
+  hosts: "{{ target }}"
+
+  vars_files:
+    - vars/repos.yml
+
+  remote_user: "{{ REMOTE_USER }}"
+
+  tasks:
+    - name: RPMForge
+      yum:
+        name: "{{ rpmforge_url }}"
+        state: present
+      tags:
+        - rpmforge
+    - name: RPMForge Keys
+      rpm_key:
+        key: "{{ rpmforge_key1 }}"
+        state: present
+      rpm_key:
+        key: "{{ rpmforge_key2 }}"
+        state: present
+      tags:
+        - rpmforge
+
+    - name: EPEL
+      yum:
+        name: "{{ epel_url }}"
+        state: present
+      tags:
+        - epel
+    - name: EPEL Key
+      rpm_key:
+        key: "{{ epel_key }}"
+        state: present
+      tags:
+        - epel
+
+    - name: Remi
+      yum:
+        name: "{{ remi_url }}"
+        state: present
+      tags:
+        - remi
+    - name: Remi Key
+      rpm_key:
+        key: "{{ remi_key }}"
+        state: present
+      tags:
+        - remi
+
+    - name: MySQL
+      yum:
+        name: "{{ mysql_url }}"
+        state: present
+      tags:
+        - mysql
+    - name: MySQL Key
+      rpm_key:
+        key: "{{ mysql_key }}"
+        state: present
+      tags:
+        - mysql
+
+    - name: PostgreSQL
+      yum:
+        name: "{{ postgresql_url }}"
+        state: present
+      tags:
+        - postgre
+    - name: PostgreSQL Key
+      rpm_key:
+        key: "{{ postgresql_key }}"
+        state: present
+      tags:
+        - postgre
+    - name: "PostgreSQL: exclude postgresql on CentOS [base]"
+      ini_file: dest=/etc/yum.repos.d/CentOS-Base.repo
+                section=base
+                option=exclude
+                value=postgresql*
+                backup=no
+      tags:
+        - postgre
+    - name: "PostgreSQL: exclude postgresql on CentOS [updates]"
+      ini_file: dest=/etc/yum.repos.d/CentOS-Base.repo
+                section=updates
+                option=exclude
+                value=postgresql*
+                backup=yes
+      tags:
+        - postgre
