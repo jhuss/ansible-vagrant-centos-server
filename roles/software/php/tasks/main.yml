@@ -1,0 +1,34 @@
+- name: php
+  yum: name={{ item }} enablerepo=remi state=present
+  with_items:
+    - php
+    - php-common
+  tags:
+    - php
+
+- name: php modules
+  yum: name={{ item }} enablerepo=remi state=present
+  with_items:
+    - php-pecl-apcu
+    - php-cli
+    - php-pear
+    - php-pdo
+    - php-mysqlnd
+    - php-pgsql
+    - php-pecl-mongo
+    - php-sqlite
+    - php-pecl-memcache
+    - php-pecl-memcached
+    - php-gd
+    - php-mbstring
+    - php-mcrypt
+    - php-xml
+  tags:
+    - php
+    - php-modules
+
+- name: phpMyAdmin
+  yum: name=phpMyAdmin enablerepo=remi state=present
+  tags:
+    - php
+    - phpmyadmin

@@ -1,0 +1,13 @@
+- name: software install
+  hosts: "{{ target }}"
+
+  vars_files:
+    - vars/software.yml
+
+  remote_user: "{{ REMOTE_USER }}"
+
+  roles:
+    - software/php
+    - software/apache
+    - software/mysql
+    - software/postgre

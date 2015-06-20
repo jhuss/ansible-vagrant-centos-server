@@ -1,0 +1,4 @@
+- name: PostgreSQL Database
+  yum: name=postgresql94-server state=present
+  tags:
+   - postgre

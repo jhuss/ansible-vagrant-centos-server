@@ -1,0 +1,4 @@
+- name: MySQL Database
+  yum: name=mysql-server state=present
+  tags:
+   - mysql
