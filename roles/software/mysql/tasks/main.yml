@@ -7,3 +7,43 @@
   tags:
     - mysql
     - mysql-enable
+
+- name: MySQL Python
+  yum: name=MySQL-python state=present
+  tags:
+    - mysql
+    - mysql-safe
+
+- name: delete anonymous MySQL server user for {{ ansible_hostname }}
+  action: mysql_user user="" host="{{ ansible_hostname }}" state="absent"
+  tags:
+    - mysql
+    - mysql-safe
+
+- name: delete anonymous MySQL server user for localhost
+  action: mysql_user user="" state="absent"
+  tags:
+    - mysql
+    - mysql-safe
+
+- name: remove the MySQL test database
+  action: mysql_db db=test state=absent
+  tags:
+    - mysql
+    - mysql-safe
+
+- name: Change root user password on first run
+  mysql_user: login_user=root
+              login_password='vagrant'
+              name=root
+              password={{ root_passwd }}
+              priv=*.*:ALL,GRANT
+              host={{ item }}
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost
+  tags:
+    - mysql
+    - mysql-safe
