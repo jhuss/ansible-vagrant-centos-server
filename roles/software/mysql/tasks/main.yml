@@ -1,4 +1,9 @@
 - name: MySQL Database
   yum: name=mysql-server state=present
   tags:
-   - mysql
+    - mysql
+
+- service: name=mysqld enabled=yes
+  tags:
+    - mysql
+    - mysql-enable
