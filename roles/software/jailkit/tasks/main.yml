@@ -1,0 +1,18 @@
+- name: "Jailkit: download"
+  get_url: url={{ jailkit_url }} dest=/tmp/{{ jailkit_tar }}
+  tags:
+    - jailkit
+
+- name: "Jailkit: extract"
+  unarchive: src=/tmp/{{ jailkit_tar }} dest=/tmp/ copy=no
+  tags:
+    - jailkit
+
+- name: "Jailkit: build and install"
+  shell: 'cd /tmp/jailkit-{{ jailkit_ver }}; {{ item }}'
+  with_items:
+    - ./configure
+    - make
+    - make install
+  tags:
+    - jailkit

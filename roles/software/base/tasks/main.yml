@@ -1,0 +1,4 @@
+- name: Development Tools
+  yum: name=@development state=present
+  tags:
+    - development

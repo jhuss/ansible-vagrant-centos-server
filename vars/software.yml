@@ -1,0 +1,3 @@
+jailkit_ver: 2.17
+jailkit_tar: jailkit-{{ jailkit_ver }}.tar.gz
+jailkit_url: http://olivier.sessink.nl/jailkit/{{ jailkit_tar }}

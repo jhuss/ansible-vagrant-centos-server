@@ -7,7 +7,9 @@
   remote_user: "{{ REMOTE_USER }}"
 
   roles:
+    - software/base
     - software/php
     - software/apache
     - software/mysql
     - software/postgre
+    - software/jailkit
