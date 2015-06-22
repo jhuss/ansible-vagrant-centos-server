@@ -2,3 +2,8 @@
   yum: name=@development state=present
   tags:
     - development
+
+- name: Vim
+  yum: name=vim-enhanced state=present
+  tags:
+    - vim

@@ -1,0 +1,11 @@
+- name: service manager
+  hosts: "{{ target }}"
+
+  vars_files:
+    - vars/software.yml
+
+  remote_user: "{{ REMOTE_USER }}"
+
+  roles:
+    - service/apache
+    - service/php-fpm

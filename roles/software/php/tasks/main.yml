@@ -6,6 +6,12 @@
   tags:
     - php
 
+- name: php-fpm
+  yum: name=php-fpm enablerepo=remi state=present
+  tags:
+    - php
+    - php-fpm
+
 - name: php modules
   yum: name={{ item }} enablerepo=remi state=present
   with_items:

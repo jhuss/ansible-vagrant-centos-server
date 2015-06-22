@@ -1,0 +1,7 @@
+- service: name=httpd enabled=yes
+  tags:
+    - apache-enable
+
+- service: name=httpd state=restarted
+  tags:
+    - apache-restart

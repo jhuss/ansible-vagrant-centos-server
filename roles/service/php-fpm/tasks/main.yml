@@ -1,0 +1,19 @@
+- service: name=php-fpm enabled=yes
+  tags:
+    - php-enable
+
+- service: name=php-fpm state=restarted
+  tags:
+    - php-restart
+
+- name: 'Apache: disable php module - conf.d/php.conf'
+  shell: sed -i 's/^\([^#]\)/#\1/g' /etc/httpd/conf.d/php.conf
+  tags:
+    - php-fpm
+    - disable-apmod-php
+
+- name: 'Apache: disable php module - conf.modules.d/10-php.conf'
+  shell: sed -i 's/^\([^#]\)/#\1/g' /etc/httpd/conf.modules.d/10-php.conf
+  tags:
+    - php-fpm
+    - disable-apmod-php
