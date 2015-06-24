@@ -1,4 +1,6 @@
 - name: http webserver
   yum: name=httpd enablerepo=remi state=present
+  notify:
+    - enable apache
   tags:
     - apache

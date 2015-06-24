@@ -1,9 +1,7 @@
 - name: PostgreSQL Database
   yum: name=postgresql94-server state=present
+  notify:
+    - enable postgre
+    - restart postgre
   tags:
     - postgre
-
-- service: name=postgresql-9.4 enabled=yes
-  tags:
-    - postgre
-    - postgre-enable

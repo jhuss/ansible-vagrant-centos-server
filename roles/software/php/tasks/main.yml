@@ -8,6 +8,8 @@
 
 - name: php-fpm
   yum: name=php-fpm enablerepo=remi state=present
+  notify:
+    - enable php-fpm
   tags:
     - php
     - php-fpm

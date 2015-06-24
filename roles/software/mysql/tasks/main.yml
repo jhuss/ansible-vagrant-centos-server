@@ -1,12 +1,10 @@
 - name: MySQL Database
   yum: name=mysql-server state=present
+  notify:
+    - enable mysql
+    - restart mysql
   tags:
     - mysql
-
-- service: name=mysqld enabled=yes
-  tags:
-    - mysql
-    - mysql-enable
 
 - name: MySQL Python
   yum: name=MySQL-python state=present

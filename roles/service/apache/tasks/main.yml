@@ -1,7 +1,36 @@
-- service: name=httpd enabled=yes
+- name: 'disable apache php module - conf.d/php.conf'
+  shell: sed -i 's/^\([^#]\)/#\1/g' /etc/httpd/conf.d/php.conf
   tags:
-    - apache-enable
+    - apache
+    - disable-apmod-php
+    - php-fpm
 
-- service: name=httpd state=restarted
+- name: 'disable apache php module - conf.modules.d/10-php.conf'
+  shell: sed -i 's/^\([^#]\)/#\1/g' /etc/httpd/conf.modules.d/10-php.conf
   tags:
-    - apache-restart
+    - apache
+    - disable-apmod-php
+    - php-fpm
+
+- name: Upload default ServerName conf
+  copy: src=servername.conf dest=/etc/httpd/conf.d/ mode=0644
+  ignore_errors: True
+  tags:
+    - apache
+    - apache-default-servername
+
+- name: 'disable welcome.conf'
+  shell: mv /etc/httpd/conf.d/welcome.conf etc/httpd/conf.d/welcome.conf.bk
+  ignore_errors: True
+  tags:
+    - apache
+    - apache-default-virtualhost
+
+- name: Upload default VirtualHost
+  copy: src=site-localhost.conf dest=/etc/httpd/conf.d/ mode=0644
+  ignore_errors: True
+  notify:
+    - restart apache
+  tags:
+    - apache
+    - apache-default-virtualhost

@@ -1,19 +1,19 @@
-- service: name=php-fpm enabled=yes
-  tags:
-    - php-enable
-
-- service: name=php-fpm state=restarted
-  tags:
-    - php-restart
-
-- name: 'Apache: disable php module - conf.d/php.conf'
-  shell: sed -i 's/^\([^#]\)/#\1/g' /etc/httpd/conf.d/php.conf
+- name: "php-fpm: php.ini - date.timezone"
+  ini_file: dest=/etc/php.ini
+            section=PHP
+            option=date.timezone
+            value="America/New_York"
+            backup=yes
   tags:
     - php-fpm
-    - disable-apmod-php
 
-- name: 'Apache: disable php module - conf.modules.d/10-php.conf'
-  shell: sed -i 's/^\([^#]\)/#\1/g' /etc/httpd/conf.modules.d/10-php.conf
+- name: "php-fpm: php.ini - default_charset"
+  ini_file: dest=/etc/php.ini
+            section=PHP
+            option=default_charset
+            value="UTF-8"
+            backup=yes
+  notify:
+    - restart php-fpm
   tags:
     - php-fpm
-    - disable-apmod-php

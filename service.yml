@@ -6,6 +6,9 @@
 
   remote_user: "{{ REMOTE_USER }}"
 
+  handlers:
+  - include: handlers/main.yml
+
   roles:
     - service/apache
     - service/php-fpm
